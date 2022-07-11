@@ -1,0 +1,33 @@
+{
+  "name": "assignment-b2-realtime-web-application",
+  "version": "1.0.0",
+  "description": "1DV026 - Assignment B2 - Realtime web application",
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon --inspect -r dotenv/config src/server.js",
+    "lint": "npx eslint ./src || exit 0",
+    "lint:fix": "npx eslint ./src --fix || exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.lnu.se:1dv026/student/eh224kr/assignment-b2-realtime-web-application.git"
+  },
+  "author": "Ellinor Henriksson <eh224kr@student.lnu.se>",
+  "private": true,
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "express-ejs-layouts": "^2.5.1",
+    "express-session": "^1.17.3",
+    "helmet": "^5.1.0",
+    "morgan": "^1.10.0",
+    "socket.io": "^4.5.1"
+  },
+  "devDependencies": {
+    "@lnu/eslint-config": "^1.1.5",
+    "dotenv": "^16.0.1",
+    "nodemon": "^2.0.19"
+  }
+}
