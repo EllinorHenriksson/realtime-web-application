@@ -2,8 +2,12 @@
 
 <div>
   <% for (const issue of viewData.issues) { %>
-    <img src="<%= issue.author %>" alt="Avatar"></img>
-    <div><%= issue.title %></div>
-    <div><%= issue.description %></div>
+    <div id="<%= issue.id %>">
+      <img src="<%= issue.author %>" alt="Avatar"></img>
+      <div>Issue #<%= issue.id %></div>
+      <div>Title: <%= issue.title %></div>
+      <div>Description: <%= issue.description %></div>
+      <a href="./issues/<%= issue.id %>/update">Update</a>  
+    </div>
     <% } %>
 </div>

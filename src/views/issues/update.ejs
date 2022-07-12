@@ -1,0 +1,13 @@
+<h1>Update issue</h1>
+
+<form method="post" action="./issues/<%= viewData.id %>/update">
+  <label for="title">Title: </label>
+  <input type="text" name="title" id="title" value="<%= viewData.title %>" required autofocus />
+  <label for="decription">Description: </label>
+  <textarea name="description"  id="description" cols="30" rows="10"><%= viewData.description %></textarea>
+  <% if (viewData.state === 'opened') { %>
+    <label for="closed">Close issue: </label>
+    <input type="checkbox" name="closed" id="closed"/>
+  <% } %>
+  <button type="submit">Update</button>
+</form>
