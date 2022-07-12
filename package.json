@@ -23,6 +23,7 @@
     "express-session": "^1.17.3",
     "helmet": "^5.1.0",
     "morgan": "^1.10.0",
+    "node-fetch": "^3.2.7",
     "socket.io": "^4.5.1"
   },
   "devDependencies": {

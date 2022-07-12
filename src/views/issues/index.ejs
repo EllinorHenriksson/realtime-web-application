@@ -1,0 +1,9 @@
+<h1>Issues</h1>
+
+<div>
+  <% for (const issue of viewData.issues) { %>
+    <img src="<%= issue.author %>" alt="Avatar"></img>
+    <div><%= issue.title %></div>
+    <div><%= issue.description %></div>
+    <% } %>
+</div>
