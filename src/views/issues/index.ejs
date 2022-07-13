@@ -1,6 +1,6 @@
 <h1>Issues</h1>
 
-<div>
+<div id="issue-list">
   <% for (const issue of viewData.issues) { %>
     <div id="<%= issue.id %>">
       <img 
@@ -10,10 +10,20 @@
         <% } else { %>
           src="./img/profile.png"
         <% } %>></img>
-      <div>Issue #<%= issue.id %></div>
-      <div>Title: <%= issue.title %></div>
-      <div>Description: <%= issue.description %></div>
+      <div id="issue-id">#<%= issue.id %></div>
+      <div id="title"><%= issue.title %></div>
+      <div id="description"><%= issue.description %></div>
       <a href="./issues/<%= issue.id %>/update">Update</a>  
     </div>
     <% } %>
 </div>
+
+<template>
+  <div>
+    <img alt="Profile"></img>
+    <div id="issue-id"></div>
+    <div id="title"></div>
+    <div id="description"></div>
+    <a>Update</a>  
+  </div>
+</template>

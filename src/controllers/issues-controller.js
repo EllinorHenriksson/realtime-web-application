@@ -5,6 +5,25 @@ import fetch from 'node-fetch'
  */
 export class IssuesController {
   /**
+   * Takes an issue object and returns an altered copy of it.
+   *
+   * @param {object} issue - The original issue object.
+   * @returns {object} An altrered copy of the issue object.
+   */
+  #alterIssue (issue) {
+    return {
+      id: issue.iid,
+      author: {
+        name: issue.author.name,
+        avatar_url: issue.author.avatar_url
+      },
+      title: issue.title,
+      description: issue.description,
+      state: issue.state
+    }
+  }
+
+  /**
    * Displays a list of issues.
    *
    * @param {object} req - Express request object.
@@ -23,15 +42,7 @@ export class IssuesController {
 
       const viewData = {
         issues: data.map(issue => {
-          return {
-            id: issue.iid,
-            author: {
-              name: issue.author.name,
-              avatar_url: issue.author.avatar_url
-            },
-            title: issue.title,
-            description: issue.description
-          }
+          return this.#alterIssue(issue)
         })
       }
 
@@ -65,14 +76,7 @@ export class IssuesController {
         }
       }
 
-      const data = await response.json()
-
-      const viewData = {
-        id: data.iid,
-        title: data.title,
-        description: data.description,
-        state: data.state
-      }
+      const viewData = this.#alterIssue(await response.json())
 
       res.render('issues/update', { viewData })
     } catch (error) {
@@ -103,6 +107,7 @@ export class IssuesController {
 
       if (response.ok) {
         req.session.flash = { type: 'success', text: 'The issue was successfully updated!' }
+        res.io.emit('issues/:id/update', this.#alterIssue(await response.json()))
       } else {
         if (response.status === 404) {
           req.session.flash = { type: 'danger', text: 'Someone deleted the issue you wanted to update.' }
