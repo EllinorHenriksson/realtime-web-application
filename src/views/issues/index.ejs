@@ -3,7 +3,13 @@
 <div>
   <% for (const issue of viewData.issues) { %>
     <div id="<%= issue.id %>">
-      <img src="<%= issue.author %>" alt="Avatar"></img>
+      <img 
+        alt="Profile" title="<%= issue.author.name %>"
+        <% if (issue.author.avatar_url) { %> 
+          src="<%= issue.author.avatar_url %>"
+        <% } else { %>
+          src="./img/profile.png"
+        <% } %>></img>
       <div>Issue #<%= issue.id %></div>
       <div>Title: <%= issue.title %></div>
       <div>Description: <%= issue.description %></div>

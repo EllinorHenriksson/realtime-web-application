@@ -25,7 +25,10 @@ export class IssuesController {
         issues: data.map(issue => {
           return {
             id: issue.iid,
-            author: issue.author.avatar_url,
+            author: {
+              name: issue.author.name,
+              avatar_url: issue.author.avatar_url
+            },
             title: issue.title,
             description: issue.description
           }
@@ -39,7 +42,7 @@ export class IssuesController {
   }
 
   /**
-   * Returns a HTML form for updating a task.
+   * Returns a HTML form for updating an issue.
    *
    * @param {object} req - Express request object.
    * @param {object} res - Express response object.
@@ -71,11 +74,47 @@ export class IssuesController {
         state: data.state
       }
 
-      console.log(viewData)
-
       res.render('issues/update', { viewData })
     } catch (error) {
       next(error)
+    }
+  }
+
+  /**
+   * Updates a specific issue.
+   *
+   * @param {object} req - Express request object.
+   * @param {object} res - Express response object.
+   */
+  async updatePost (req, res) {
+    try {
+      const params = new URLSearchParams()
+      params.append('title', req.body.title)
+      params.append('description', req.body.description)
+      params.append('state_event', req.body.closed ? 'close' : 'reopen')
+
+      const response = await fetch(`${process.env.GITLAB_API}/issues/${req.params.id}`, {
+        method: 'PUT',
+        body: params,
+        headers: {
+          'Private-Token': process.env.GITLAB_SECRET
+        }
+      })
+
+      if (response.ok) {
+        req.session.flash = { type: 'success', text: 'The issue was successfully updated!' }
+      } else {
+        if (response.status === 404) {
+          req.session.flash = { type: 'danger', text: 'Someone deleted the issue you wanted to update.' }
+        } else {
+          throw new Error()
+        }
+      }
+
+      res.redirect('..')
+    } catch (error) {
+      req.session.flash = { type: 'danger', text: 'Failed to update the issue, please try again later.' }
+      res.redirect('./update')
     }
   }
 }

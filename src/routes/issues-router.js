@@ -13,3 +13,4 @@ const controller = new IssuesController()
 router.get('/', (req, res, next) => controller.index(req, res, next))
 
 router.get('/:id/update', (req, res, next) => controller.update(req, res, next))
+router.post('/:id/update', (req, res, next) => controller.updatePost(req, res, next))
