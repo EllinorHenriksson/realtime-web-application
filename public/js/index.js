@@ -7,7 +7,7 @@ if (issueTemplate) {
   // Create a socket connection using Socket.IO.
   const socket = window.io()
 
-  // Listen for "tasks/create" message from the server.
+  // Listen for "issues/:id/update" messages from the server.
   socket.on('issues/:id/update', (issue) => updateIssue(issue))
 }
 
@@ -18,13 +18,13 @@ if (issueTemplate) {
  */
 function updateIssue (issue) {
   const issueList = document.querySelector('#issue-list')
-  const issueItem = document.querySelector(`#${issue.id}`)
+  const issueItem = document.getElementById(issue.id)
 
   if (issue.state === 'opened') {
     if (issueItem) {
       // Update item if it already exists.
       issueItem.querySelector('#title').innerText = issue.title
-      issueItem.querySelector('#decription').innerText = issue.description
+      issueItem.querySelector('#description').innerText = issue.description
     } else {
       // Add item if it does not exist.
       const issueNode = issueTemplate.content.cloneNode(true)
