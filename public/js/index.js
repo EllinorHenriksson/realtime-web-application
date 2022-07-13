@@ -1,14 +1,13 @@
 import '../socket.io/socket.io.js'
 
-const issueTemplate = document.querySelector('#issue-template')
+const issueTemplate = document.querySelector('template')
 
-// If issue list is not present on the page, just ignore and do not listen for issue messages.
 if (issueTemplate) {
   // Create a socket connection using Socket.IO.
   const socket = window.io()
 
   // Listen for "issues/:id/update" messages from the server.
-  socket.on('issues/:id/update', (issue) => updateIssue(issue))
+  socket.on('issues/:id/update', (issue) => updateIssueList(issue))
 }
 
 /**
@@ -16,7 +15,7 @@ if (issueTemplate) {
  *
  * @param {object} issue - The task to add.
  */
-function updateIssue (issue) {
+function updateIssueList (issue) {
   const issueList = document.querySelector('#issue-list')
   const issueItem = document.getElementById(issue.id)
 
