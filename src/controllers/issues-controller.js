@@ -32,7 +32,7 @@ export class IssuesController {
    */
   async index (req, res, next) {
     try {
-      const response = await fetch(process.env.GITLAB_API + '/issues?scope=all&state=opened', {
+      const response = await fetch(process.env.GITLAB_API + '/projects/23288/issues?scope=all&state=opened', {
         headers: {
           'Private-Token': process.env.GITLAB_SECRET
         }
@@ -61,7 +61,7 @@ export class IssuesController {
    */
   async update (req, res, next) {
     try {
-      const response = await fetch(`${process.env.GITLAB_API}/issues/${req.params.id}`, {
+      const response = await fetch(`${process.env.GITLAB_API}/projects/23288/issues/${req.params.id}`, {
         headers: {
           'Private-Token': process.env.GITLAB_SECRET
         }
@@ -97,7 +97,7 @@ export class IssuesController {
       params.append('description', req.body.description)
       params.append('state_event', req.body.closed ? 'close' : 'reopen')
 
-      const response = await fetch(`${process.env.GITLAB_API}/issues/${req.params.id}`, {
+      const response = await fetch(`${process.env.GITLAB_API}/projects/23288/issues/${req.params.id}`, {
         method: 'PUT',
         body: params,
         headers: {
@@ -107,7 +107,7 @@ export class IssuesController {
 
       if (response.ok) {
         req.session.flash = { type: 'success', text: 'The issue was successfully updated!' }
-        res.io.emit('issues/:id/update', this.#alterIssue(await response.json()))
+        res.io.emit('issues/update', this.#alterIssue(await response.json()))
       } else {
         if (response.status === 404) {
           req.session.flash = { type: 'danger', text: 'Someone deleted the issue you wanted to update.' }

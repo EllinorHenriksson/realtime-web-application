@@ -7,7 +7,7 @@ if (issueTemplate) {
   const socket = window.io()
 
   // Listen for "issues/:id/update" messages from the server.
-  socket.on('issues/:id/update', (issue) => updateIssueList(issue))
+  socket.on('issues/update', (issue) => updateIssueList(issue))
 }
 
 /**

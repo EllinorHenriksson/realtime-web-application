@@ -9,4 +9,8 @@ export const router = express.Router()
 
 const webhooksController = new WebhooksController()
 
-// OBS! Lägg till routes.
+// Map verbs and routes to controller actions.
+router.post('/',
+  (req, res, next) => webhooksController.authenticate(req, res, next),
+  (req, res, next) => webhooksController.indexPost(req, res, next)
+)
