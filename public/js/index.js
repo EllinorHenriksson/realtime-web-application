@@ -22,8 +22,8 @@ function updateIssueList (issue) {
   if (issue.state === 'opened') {
     if (issueItem) {
       // Update item if it already exists.
-      issueItem.querySelector('#title').innerText = issue.title
-      issueItem.querySelector('#description').innerText = issue.description
+      issueItem.querySelector('.title').innerText = issue.title
+      issueItem.querySelector('.description').innerText = issue.description
     } else {
       // Add item if it does not exist.
       const issueNode = issueTemplate.content.cloneNode(true)
@@ -31,9 +31,9 @@ function updateIssueList (issue) {
       const url = issue.author.avatar_url ? issue.author.avatar_url : './img/profile.png'
       issueNode.querySelector('img').setAttribute('src', url)
       issueNode.querySelector('img').setAttribute('title', issue.author.name)
-      issueNode.querySelector('#issue-id').innerText = `#${issue.id}`
-      issueNode.querySelector('#title').innerText = issue.title
-      issueNode.querySelector('#description').innerText = issue.description
+      issueNode.querySelector('.issue-id').innerText = `#${issue.id}`
+      issueNode.querySelector('.title').innerText = issue.title
+      issueNode.querySelector('.description').innerText = issue.description
       issueNode.querySelector('a').setAttribute('href', `./issues/${issue.id}/update`)
 
       issueList.appendChild(issueNode)

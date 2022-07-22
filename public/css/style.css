@@ -1,0 +1,103 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+aside, main {
+  padding: 1rem;
+}
+
+h1, h2, h3 {
+  color: #b56700;
+  text-align: center;
+  padding: 1em;
+}
+
+/* Styling for navigation */
+nav div {
+  background-color: rgb(181, 103, 0);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  padding: 1rem;
+  padding-left: 0;
+  margin: 0;
+}
+
+nav li {
+  padding: 0.5em;
+  font-size: 1.2rem;
+}
+
+nav li:first-child {
+  font-weight: bold;
+} 
+
+nav a {
+  color: #f1ddc2;
+  text-decoration: none;
+}
+
+nav a:hover, nav a:active {
+  color: #ffffff;
+}
+
+/* Styling for flash-messages */
+.flash {
+  font-size: 0.9rem;
+  padding: 1rem;
+  max-width: 100%;
+}
+
+.flash-success {
+  background-color: #b7e9bc;
+  color: #052f08;
+}
+
+.flash-error{
+  background-color: #da8c8c;
+  color: #5f0d0d;
+}
+
+/* Styling of issue list */
+#issue-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.list-item {
+  display: grid;
+  grid-template-columns: max-content 1fr 2fr 6fr max-content;
+  grid-template-rows: 100px;
+  align-items: center;
+}
+
+.list-item:nth-child(even) {
+  background-color: #f1ddc2;
+}
+
+.list-item > img, .list-item div, .list-item a {
+  padding: 10px;
+  max-height: 100%;
+}
+
+.list-item > img {
+  height: 80%;
+  border-radius: 50%;
+}
+
+.list-item div {
+  overflow: auto;
+}
+
+.list-item a img {
+  width: 20px;
+}
+

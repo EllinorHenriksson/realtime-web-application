@@ -32,16 +32,22 @@ export class IssuesController {
    */
   async index (req, res, next) {
     try {
-      const response = await fetch(process.env.GITLAB_API + '/projects/23288/issues?scope=all&state=opened', {
+      const response = await fetch(process.env.GITLAB_API + '/projects/23288/issues?scope=all&state=opened&per_page=100', {
         headers: {
           'Private-Token': process.env.GITLAB_SECRET
         }
       })
 
-      const data = await response.json()
+      if (!response.ok) {
+        const error = new Error('Could not fetch the issue resources from GitLab API.')
+        error.status = response.status
+        throw error
+      }
+
+      const issues = await response.json()
 
       const viewData = {
-        issues: data.map(issue => {
+        issues: issues.map(issue => {
           return this.#alterIssue(issue)
         })
       }
@@ -69,7 +75,7 @@ export class IssuesController {
 
       if (!response.ok) {
         if (response.status === 404) {
-          req.session.flash = { type: 'danger', text: 'Someone deleted the issue you wanted to update.' }
+          req.session.flash = { type: 'error', text: 'Someone deleted the issue you wanted to update.' }
           res.redirect('..')
         } else {
           throw new Error('Failed to load the requested resource from GitLab API.')
@@ -110,7 +116,7 @@ export class IssuesController {
         res.io.emit('issues/update', this.#alterIssue(await response.json()))
       } else {
         if (response.status === 404) {
-          req.session.flash = { type: 'danger', text: 'Someone deleted the issue you wanted to update.' }
+          req.session.flash = { type: 'error', text: 'Someone deleted the issue you wanted to update.' }
         } else {
           throw new Error()
         }
@@ -118,7 +124,7 @@ export class IssuesController {
 
       res.redirect('..')
     } catch (error) {
-      req.session.flash = { type: 'danger', text: 'Failed to update the issue, please try again later.' }
+      req.session.flash = { type: 'error', text: 'Failed to update the issue, please try again later.' }
       res.redirect('./update')
     }
   }
