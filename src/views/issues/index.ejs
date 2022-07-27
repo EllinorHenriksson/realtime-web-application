@@ -1,6 +1,6 @@
 <h2>Issues</h2>
 
-/*
+<% /* %>
 <div id="issue-list">
   <% for (const issue of viewData.issues) { %>
     <div id="<%= issue.id %>" class="list-item">
@@ -28,7 +28,7 @@
     <a><img src="./img/edit-orange.png" alt="Edit icon" title="Edit"></a>  
   </div>
 </template>
-*/
+<% */ %>
 
 <table>
   <caption>Open GitLab issues</caption>
@@ -36,7 +36,7 @@
     <tr><th scope="col" id="author">Author</th><th scope="col" id="issue-id">Issue ID</th><th scope="col" id="title">Title</th><th scope="col" id="description">Description</th><th scope="col" id="edit">Edit</th></tr>
   </thead>
   <tbody>
-    <% for (const snippet of viewData.issues) { %>
+    <% for (const issue of viewData.issues) { %>
       <tr id="<%= issue.id %>">
         <td class="author">
           <img 
