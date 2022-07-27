@@ -6,9 +6,11 @@
   <label for="decription">Description: </label>
   <textarea name="description"  id="description" cols="30" rows="10"><%= viewData.description %></textarea>
   <% if (viewData.state === 'opened') { %>
-    <label for="closed">Close issue: </label>
     <input type="checkbox" name="closed" id="closed"/>
+    <label for="closed">Close issue</label>
   <% } %>
-  <button type="submit">Update</button>
-  <a href="./issues">Cancel</a>
+  <div>
+    <button type="submit">Update</button>
+    <a href="./issues">Cancel</a>
+  </div>
 </form>

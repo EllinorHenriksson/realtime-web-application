@@ -1,6 +1,13 @@
 <h2>Issues</h2>
 
 <div id="issue-list">
+  <div class="list-item">
+    <div>Author</div>
+    <div>Issue ID</div>
+    <div>Title</div>
+    <div>Description</div>
+    <div>Edit</div>
+  </div>
   <% for (const issue of viewData.issues) { %>
     <div id="<%= issue.id %>" class="list-item">
       <img 
@@ -24,6 +31,6 @@
     <div class="issue-id"></div>
     <div class="title"></div>
     <div class="description"></div>
-    <a><img src="./img/edit.png" alt="Edit icon" title="Edit"></a>  
+    <a><img src="./img/edit-orange.png" alt="Edit icon" title="Edit"></a>  
   </div>
 </template>

@@ -17,7 +17,7 @@ if (issueTemplate) {
  */
 function updateIssueList (issue) {
   const issueList = document.querySelector('#issue-list')
-  const issueItem = document.getElementById(issue.id)
+  const issueItem = issueList.getElementById(issue.id)
 
   if (issue.state === 'opened') {
     if (issueItem) {
