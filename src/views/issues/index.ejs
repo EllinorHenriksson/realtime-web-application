@@ -1,5 +1,6 @@
 <h2>Issues</h2>
 
+/*
 <div id="issue-list">
   <% for (const issue of viewData.issues) { %>
     <div id="<%= issue.id %>" class="list-item">
@@ -26,4 +27,53 @@
     <div class="description"><pre></pre></div>
     <a><img src="./img/edit-orange.png" alt="Edit icon" title="Edit"></a>  
   </div>
+</template>
+*/
+
+<table>
+  <caption>Open GitLab issues</caption>
+  <thead>
+    <tr><th scope="col" id="author">Author</th><th scope="col" id="issue-id">Issue ID</th><th scope="col" id="title">Title</th><th scope="col" id="description">Description</th><th scope="col" id="edit">Edit</th></tr>
+  </thead>
+  <tbody>
+    <% for (const snippet of viewData.issues) { %>
+      <tr id="<%= issue.id %>">
+        <td class="author">
+          <img 
+            alt="Profile"
+            title="<%= issue.author.name %>"
+            <% if (issue.author.avatar_url) { %> 
+              src="<%= issue.author.avatar_url %>"
+            <% } else { %>
+              src="./img/profile.png"
+            <% } %>>
+          </img>  
+        </td>
+        <td class="issue-id">#<%= issue.id %></td>
+        <td class="title"><%= issue.title %></td>
+        <td class="description"><pre><%= issue.description %></pre></td>
+        <td class="edit">
+          <a href="./issues/<%= issue.id %>/update">
+            <img src="./img/edit-orange.png" alt="Edit icon" title="Edit">
+          </a>  
+        </td>
+      </tr>
+    <% } %>
+  </tbody>
+</table>
+
+<template>
+  <tr>
+    <td class="author">
+      <img alt="Profile"></img>  
+    </td>
+    <td class="issue-id"></td>
+    <td class="title"></td>
+    <td class="description"><pre></pre></td>
+    <td class="edit">
+      <a>
+        <img src="./img/edit-orange.png" alt="Edit icon" title="Edit">
+      </a>  
+    </td>
+  </tr>
 </template>
