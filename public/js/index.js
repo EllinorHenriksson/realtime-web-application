@@ -17,13 +17,13 @@ if (issueTemplate) {
  */
 function updateIssueList (issue) {
   const issueList = document.querySelector('#issue-list')
-  const issueItem = issueList.getElementById(issue.id)
+  const issueItem = document.getElementById(issue.id)
 
   if (issue.state === 'opened') {
     if (issueItem) {
       // Update item if it already exists.
       issueItem.querySelector('.title').innerText = issue.title
-      issueItem.querySelector('.description').innerText = issue.description
+      issueItem.querySelector('.description').firstChild.innerText = issue.description
     } else {
       // Add item if it does not exist.
       const issueNode = issueTemplate.content.cloneNode(true)
@@ -33,7 +33,7 @@ function updateIssueList (issue) {
       issueNode.querySelector('img').setAttribute('title', issue.author.name)
       issueNode.querySelector('.issue-id').innerText = `#${issue.id}`
       issueNode.querySelector('.title').innerText = issue.title
-      issueNode.querySelector('.description').innerText = issue.description
+      issueNode.querySelector('.description').firstChild.innerText = issue.description
       issueNode.querySelector('a').setAttribute('href', `./issues/${issue.id}/update`)
 
       issueList.appendChild(issueNode)

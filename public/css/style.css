@@ -115,7 +115,17 @@ input[type="text"], textarea {
   width: 100%;
   margin-bottom: 10px;
   display: block;
-  padding: 5px; 
+  padding: 5px;
+  border: 2px solid rgb(165, 165, 165);
+  outline: none; 
+}
+
+input[type="text"]:focus, textarea:focus {
+  border: 2px solid #b56700;
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
 }
 
 form div {
@@ -143,17 +153,4 @@ form a:hover, form a:active, form button:hover, form button:active {
   color: #ffffff;
   background-color: #b56700;
   border: 2px solid #b56700;
-}
-
-input[type="text"], textarea {
-  border: 2px solid rgb(165, 165, 165);
-  outline: none;
-}
-
-input[type="text"]:focus, textarea:focus {
-  border: 2px solid #b56700;
-}
-
-input[type="checkbox"] {
-  cursor: pointer;
 }
