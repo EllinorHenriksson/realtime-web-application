@@ -67,44 +67,7 @@ nav a:hover, nav a:active {
   color: #5f0d0d;
 }
 
-/* Styling of issue list */
-/*
-#issue-list {
-  display: flex;
-  flex-direction: column;
-}
-
-.list-item {
-  display: grid;
-  grid-template-columns: max-content 1fr 2fr 6fr max-content;
-  grid-template-rows: 100px;
-  align-items: center;
-}
-
-.list-item:nth-child(even) {
-  background-color: #f1ddc2;
-}
-
-.list-item > img, .list-item div, .list-item a {
-  padding: 10px;
-  max-height: 100%;
-}
-
-.list-item > img {
-  height: 80%;
-  border-radius: 50%;
-}
-
-.list-item div {
-  overflow: auto;
-}
-
-.list-item a img {
-  width: 20px;
-}
-*/
-
-/* Styling of issue list */
+/* Styling of issue table */
 caption {
   caption-side: bottom;
   text-align: left;
@@ -164,37 +127,6 @@ td pre {
 .author, .edit {
   text-align: center;
 }
-
-/*
-.list-item {
-  display: grid;
-  grid-template-columns: max-content 1fr 2fr 6fr max-content;
-  grid-template-rows: 100px;
-  align-items: center;
-}
-
-.list-item:nth-child(even) {
-  background-color: #f1ddc2;
-}
-
-.list-item > img, .list-item div, .list-item a {
-  padding: 10px;
-  max-height: 100%;
-}
-
-.list-item > img {
-  height: 80%;
-  border-radius: 50%;
-}
-
-.list-item div {
-  overflow: auto;
-}
-
-.list-item a img {
-  width: 20px;
-}
-*/
 
 /* Styling of form */
 form {
