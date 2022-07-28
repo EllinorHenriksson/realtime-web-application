@@ -20,18 +20,20 @@ function updateIssueTable (issue) {
   const tableRow = document.getElementById(issue.id)
 
   const params = new URLSearchParams(window.location.search)
-  const filter = params?.state
+  const filter = params?.get('state')
 
-  if (filter === 'opened') {
-
-  }
-
-
-  if (issue.state === 'opened') {
+  if (!filter || (filter === 'opened' && issue.state === 'opened') || (filter === 'closed' && issue.state === 'closed')) {
     if (tableRow) {
       // Update row if it already exists.
       tableRow.querySelector('.title').innerText = issue.title
       tableRow.querySelector('.description').firstChild.innerText = issue.description
+      let state
+      if (issue.state === 'opened') {
+        state = 'Open'
+      } else if (issue.state === 'closed') {
+        state = 'Closed'
+      }
+      tableRow.querySelector('.state').innerText = state
     } else {
       // Add row if it does not exist.
       const newRow = issueTemplate.content.cloneNode(true)
@@ -69,9 +71,9 @@ function updateIssueTable (issue) {
       // Append new row.
       tableBody.insertBefore(newRow, nextRow)
     }
-  } else if (issue.state === 'closed') {
+  } else if ((filter === 'opened' && issue.state === 'closed') || (filter === 'closed' && issue.state === 'opened')) {
     if (tableRow) {
-      // Delete row if the issue has been closed.
+      // Delete row if the issue has been closed and only open issues are viewed, and vice versa.
       tableRow.remove()
     }
   }
