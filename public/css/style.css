@@ -180,3 +180,8 @@ form a:hover, form a:active, form button:hover, form button:active {
   background-color: #b56700;
   border: 2px solid #b56700;
 }
+
+/* Styling of error page */
+#error h1, h2, pre {
+  color: #000000;
+}

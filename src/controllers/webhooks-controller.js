@@ -43,9 +43,7 @@ export class WebhooksController {
         })
 
         if (!response.ok) {
-          const error = new Error('Could not fetch the user resource from GitLab API.')
-          error.status = response.status
-          throw error
+          throw new Error('Could not fetch the user resource from GitLab API. Status: ' + response.status)
         }
 
         const user = await response.json()

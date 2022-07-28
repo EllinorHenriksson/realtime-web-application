@@ -39,9 +39,7 @@ export class IssuesController {
       })
 
       if (!response.ok) {
-        const error = new Error('Could not fetch the issue resources from GitLab API.')
-        error.status = response.status
-        throw error
+        throw new Error('Could not fetch the issue resources from GitLab API. Status: ' + response.status)
       }
 
       const issues = await response.json()
@@ -75,10 +73,11 @@ export class IssuesController {
 
       if (!response.ok) {
         if (response.status === 404) {
-          req.session.flash = { type: 'error', text: 'Someone deleted the issue you wanted to update.' }
-          res.redirect('..')
+          const error = new Error('Not Found')
+          error.status = 404
+          throw error
         } else {
-          throw new Error('Failed to load the requested resource from GitLab API.')
+          throw new Error('Failed to load the requested resource from GitLab API. Status: ' + response.status)
         }
       }
 
