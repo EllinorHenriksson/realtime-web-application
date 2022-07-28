@@ -34,6 +34,13 @@ function updateIssueTable (issue) {
       newRow.querySelector('.issue-id').innerText = `#${issue.id}`
       newRow.querySelector('.title').innerText = issue.title
       newRow.querySelector('.description').firstChild.innerText = issue.description
+      let state
+      if (issue.state === 'opened') {
+        state = 'Open'
+      } else if (issue.state === 'closed') {
+        state = 'Closed'
+      }
+      newRow.querySelector('.state').innerText = state
       newRow.querySelector('a').setAttribute('href', `./issues/${issue.id}/update`)
 
       // Decide on what row the new row should be appended.

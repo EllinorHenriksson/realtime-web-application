@@ -32,7 +32,18 @@ export class IssuesController {
    */
   async index (req, res, next) {
     try {
-      const response = await fetch(process.env.GITLAB_API + '/projects/23288/issues?scope=all&state=opened&per_page=100', {
+      // Save query in session storage to use when redirecting after update.
+      req.session.query = req.query
+
+      const params = new URLSearchParams()
+      params.append('scope', 'all')
+      params.append('per_page', 100)
+
+      if (req.query.state === 'closed' || req.query.state === 'opened') {
+        params.append('state', req.query.state)
+      }
+
+      const response = await fetch(process.env.GITLAB_API + '/projects/23288/issues?' + params.toString(), {
         headers: {
           'Private-Token': process.env.GITLAB_SECRET
         }
@@ -47,10 +58,11 @@ export class IssuesController {
       const viewData = {
         issues: issues.map(issue => {
           return this.#alterIssue(issue)
-        })
+        }),
+        state: req.query.state
       }
 
-      res.render('issues/index', { viewData })
+      res.render('issues/index', viewData)
     } catch (error) {
       next(error)
     }
@@ -83,7 +95,7 @@ export class IssuesController {
 
       const viewData = this.#alterIssue(await response.json())
 
-      res.render('issues/update', { viewData })
+      res.render('issues/update', viewData)
     } catch (error) {
       next(error)
     }
@@ -131,7 +143,8 @@ export class IssuesController {
         }
       }
 
-      res.redirect('..')
+      // User is redirected to issues page with previous query params.
+      res.redirect('/issues?' + (new URLSearchParams(req.session.query)).toString())
     } catch (error) {
       req.session.flash = { type: 'error', text: 'Failed to update the issue, please try again later.' }
       res.redirect('./update')

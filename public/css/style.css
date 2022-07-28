@@ -89,7 +89,7 @@ th {
   padding: 10px;
 }
 
-#author, #issue-id, #edit {
+#author, #issue-id, #state, #edit {
   width: 100px;
 }
 
@@ -124,7 +124,7 @@ td pre {
   height: 30%;
 }
 
-.author, .edit {
+.author, .issue-id, .state, .edit {
   text-align: center;
 }
 
@@ -182,6 +182,6 @@ form a:hover, form a:active, form button:hover, form button:active {
 }
 
 /* Styling of error page */
-#error h1, h2, pre {
+#error h1, #error h2, #error pre {
   color: #000000;
 }
