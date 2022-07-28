@@ -1,5 +1,23 @@
 <h2>Issues</h2>
 
+<div class="filter">
+  <a href="./issues"
+    <% if (!state) { %>
+      class="current"
+    <% } %>
+  >All</a>
+  <a href="./issues?state=opened"
+    <% if (state === 'opened') { %>
+      class="current"
+    <% } %>
+  >Open</a>
+  <a href="./issues?state=closed"
+    <% if (state === 'closed') { %>
+      class="current"
+    <% } %>
+  >Closed</a>
+</div>
+
 <table>
   <caption>
     <% if (!state) { %>

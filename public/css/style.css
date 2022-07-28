@@ -67,6 +67,25 @@ nav a:hover, nav a:active {
   color: #5f0d0d;
 }
 
+/* Styling of filter links */
+.filter a {
+  text-decoration: none;
+  background-color: #f1ddc2;
+  color: #000000;
+  padding: 10px;
+  margin: 0;
+  border: 1px solid #b56700;
+}
+
+.filter a:link, .filter a:visited {
+  color: #000000;
+}
+
+.filter a:hover, .filter a:active, .filter a.current {
+  background-color: #b56700;
+  color: #ffffff;
+}
+
 /* Styling of issue table */
 caption {
   caption-side: bottom;
