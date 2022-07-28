@@ -8,6 +8,9 @@
   <% if (viewData.state === 'opened') { %>
     <input type="checkbox" name="closed" id="closed"/>
     <label for="closed">Close issue</label>
+  <% } else if (viewData.state === 'closed') { %>
+    <input type="checkbox" name="opened" id="opened"/>
+    <label for="opened">Open issue</label>
   <% } %>
   <div>
     <button type="submit">Update</button>

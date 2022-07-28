@@ -100,7 +100,17 @@ export class IssuesController {
       const params = new URLSearchParams()
       params.append('title', req.body.title)
       params.append('description', req.body.description)
-      params.append('state_event', req.body.closed ? 'close' : 'reopen')
+
+      let stateEvent
+      if (req.body.closed) {
+        stateEvent = 'close'
+      } else if (req.body.opened) {
+        stateEvent = 'reopen'
+      }
+
+      if (stateEvent) {
+        params.append('state_event', stateEvent)
+      }
 
       const response = await fetch(`${process.env.GITLAB_API}/projects/23288/issues/${req.params.id}`, {
         method: 'PUT',
