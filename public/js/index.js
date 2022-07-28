@@ -36,7 +36,23 @@ function updateIssueTable (issue) {
       newRow.querySelector('.description').firstChild.innerText = issue.description
       newRow.querySelector('a').setAttribute('href', `./issues/${issue.id}/update`)
 
-      tableBody.appendChild(newRow)
+      // Decide on what row the new row should be appended.
+      const rows = Array.from(tableBody.querySelectorAll('tr'))
+      rows.sort((a, b) => {
+        return a.getAttribute('id') - b.getAttribute('id')
+      })
+
+      let nextRow
+      for (let i = 0; i < rows.length; i++) {
+        const row = rows[i]
+
+        if (row.getAttribute('id') < issue.id) {
+          nextRow = row
+        }
+      }
+
+      // Append new row.
+      tableBody.insertBefore(newRow, nextRow)
     }
   } else if (issue.state === 'closed') {
     if (tableRow) {
