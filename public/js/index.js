@@ -19,6 +19,14 @@ function updateIssueTable (issue) {
   const tableBody = document.querySelector('tbody')
   const tableRow = document.getElementById(issue.id)
 
+  const params = new URLSearchParams(window.location.search)
+  const filter = params?.state
+
+  if (filter === 'opened') {
+
+  }
+
+
   if (issue.state === 'opened') {
     if (tableRow) {
       // Update row if it already exists.

@@ -32,6 +32,15 @@ export class IssuesController {
    */
   async index (req, res, next) {
     try {
+      // Validate query params.
+      if (Object.keys(req.query).length) {
+        if (Object.keys(req.query).length > 1 || (req.query.state !== 'opened' && req.query.state !== 'closed')) {
+          const error = new Error('Not Found')
+          error.status = 404
+          throw error
+        }
+      }
+
       // Save query in session storage to use when redirecting after update.
       req.session.query = req.query
 
@@ -39,7 +48,7 @@ export class IssuesController {
       params.append('scope', 'all')
       params.append('per_page', 100)
 
-      if (req.query.state === 'closed' || req.query.state === 'opened') {
+      if (req.query.state) {
         params.append('state', req.query.state)
       }
 
