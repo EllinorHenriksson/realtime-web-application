@@ -2,17 +2,17 @@
 
 <div class="filter">
   <a href="./issues"
-    <% if (!state) { %>
+    <% if (!filter) { %>
       class="current"
     <% } %>
   >All</a>
   <a href="./issues?state=opened"
-    <% if (state === 'opened') { %>
+    <% if (filter === 'opened') { %>
       class="current"
     <% } %>
   >Open</a>
   <a href="./issues?state=closed"
-    <% if (state === 'closed') { %>
+    <% if (filter === 'closed') { %>
       class="current"
     <% } %>
   >Closed</a>
@@ -20,11 +20,11 @@
 
 <table>
   <caption>
-    <% if (!state) { %>
+    <% if (!filter) { %>
       All GitLab issues
-    <% } else if (state === 'opened') { %>
+    <% } else if (filter === 'opened') { %>
       Open GitLab issues
-    <% } else if (state === 'closed') { %>
+    <% } else if (filter === 'closed') { %>
       Closed GitLab issues
     <% } %>
   </caption>

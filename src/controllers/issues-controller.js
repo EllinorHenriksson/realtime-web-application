@@ -41,7 +41,7 @@ export class IssuesController {
         }
       }
 
-      // Save query in session storage to use when redirecting after update.
+      // Save query in session storage to use when needed (for example, when redirecting after update).
       req.session.query = req.query
 
       const params = new URLSearchParams()
@@ -68,7 +68,7 @@ export class IssuesController {
         issues: issues.map(issue => {
           return this.#alterIssue(issue)
         }),
-        state: req.query.state
+        filter: req.query.state
       }
 
       res.render('issues/index', viewData)
@@ -102,7 +102,10 @@ export class IssuesController {
         }
       }
 
-      const viewData = this.#alterIssue(await response.json())
+      const viewData = {
+        issue: this.#alterIssue(await response.json()),
+        filter: req.session.query.state
+      }
 
       res.render('issues/update', viewData)
     } catch (error) {
