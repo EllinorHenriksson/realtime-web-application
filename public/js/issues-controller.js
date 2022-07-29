@@ -153,7 +153,7 @@ export class IssuesController {
       }
 
       // User is redirected to issues page with previous query params.
-      res.redirect('../../issues?' + (new URLSearchParams(req.session.query)).toString())
+      res.redirect('/issues?' + (new URLSearchParams(req.session.query)).toString())
     } catch (error) {
       req.session.flash = { type: 'error', text: 'Failed to update the issue, please try again later.' }
       res.redirect('./update')
