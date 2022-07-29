@@ -4,7 +4,11 @@ const issueTemplate = document.querySelector('template')
 
 if (issueTemplate) {
   // Create a socket connection using Socket.IO.
-  const socket = window.io()
+  const base = document.querySelector('base')
+  const path = base
+    ? (new URL('socket.io', base.href)).pathname
+    : '/socket.io'
+  const socket = window.io.connect('/', { path })
 
   // Listen for "issues/:id/update" messages from the server.
   socket.on('issues/update', (issue) => updateIssueTable(issue))
