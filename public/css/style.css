@@ -96,6 +96,7 @@ caption {
 
 table {
   border-collapse: collapse;
+  border-top: 2px solid #b56700;
   border-bottom: 2px solid #b56700;
   width: 100%;
   margin-top: 1rem;
@@ -126,7 +127,6 @@ tr:nth-child(even) {
 
 td {
   padding: 10px;
-  height: 100px;
   overflow: auto;
 }
 
@@ -134,17 +134,13 @@ pre {
   overflow: auto;
 }
 
-td pre {
-  max-height: 100%;
-}
-
 .author img {
-  height: 100%;
+  height: 80px;
   border-radius: 50%;
 }
 
 .edit img {
-  height: 30%;
+  height: 20px;
 }
 
 .author, .issue-id, .state, .edit {
@@ -165,7 +161,7 @@ input[type="text"], textarea {
   margin-bottom: 10px;
   display: block;
   padding: 5px;
-  border: 2px solid rgb(165, 165, 165);
+  border: 2px solid #a5a5a5;
   outline: none; 
 }
 
@@ -179,6 +175,7 @@ input[type="checkbox"] {
 
 form div {
   text-align: center;
+  margin-top: 10px;
 }
 
 form button, form a {
@@ -207,4 +204,59 @@ form a:hover, form a:active, form button:hover, form button:active {
 /* Styling of error page */
 #error h1, #error h2, #error pre {
   color: #000000;
+}
+
+/* Styling of table for smaller screens */
+@media only screen and (max-width: 700px) {
+  table, caption, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+
+  table {
+    position: relative;
+    margin-bottom: 50px;
+  }
+
+  caption {
+    position: absolute;
+    bottom: -25px;
+    left: 0;
+  }
+
+  thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+  td { 
+		position: relative;
+		padding-left: 50%;
+    text-align: center;
+    min-height: 40px;
+	}
+
+  tr:nth-child(even) td {
+    border-bottom: 1px solid #ffffff; 
+  }
+
+  tr:nth-child(odd) td {
+    border-bottom: 1px solid #f1ddc2; 
+  }
+
+  td:before { 
+		position: absolute;
+		top: 10px;
+		left: 0;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+	
+	td:nth-of-type(1):before {content: "Author"; }
+	td:nth-of-type(2):before { content: "Issue ID"; }
+	td:nth-of-type(3):before { content: "Title"; }
+	td:nth-of-type(4):before { content: "Description"; }
+	td:nth-of-type(5):before { content: "State"; }
+	td:nth-of-type(6):before { content: "Edit"; }
 }
