@@ -130,6 +130,10 @@ td {
   overflow: auto;
 }
 
+pre {
+  overflow: auto;
+}
+
 td pre {
   max-height: 100%;
 }
