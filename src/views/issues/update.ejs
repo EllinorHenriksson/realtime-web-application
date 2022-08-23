@@ -1,0 +1,26 @@
+<h2>Update issue</h2>
+
+<form method="post" action="./issues/<%= issue.id %>/update">
+  <label for="form-title">Title: </label>
+  <input type="text" name="title" id="form-title" value="<%= issue.title %>" required autofocus />
+  <label for="form-decription">Description: </label>
+  <textarea name="description"  id="form-description" cols="30" rows="10"><%= issue.description %></textarea>
+  <% if (issue.state === 'opened') { %>
+    <input type="checkbox" name="closed" id="closed"/>
+    <label for="closed">Close issue</label>
+  <% } else if (issue.state === 'closed') { %>
+    <input type="checkbox" name="opened" id="opened"/>
+    <label for="opened">Open issue</label>
+  <% } %>
+  <div>
+    <button type="submit">Update</button>
+    <a
+    <% if (!filter) { %>
+      href="./issues"
+    <% } else if (filter === 'opened') { %>
+      href="./issues?state=opened"
+    <% } else if (filter === 'closed') { %>
+      href="./issues?state=closed"
+    <% } %>>Cancel</a>
+  </div>
+</form>

@@ -1,0 +1,262 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: #ffffff;
+}
+
+aside, main {
+  padding: 1rem;
+}
+
+h1, h2, h3 {
+  color: #b56700;
+  text-align: center;
+  padding: 1em;
+}
+
+/* Styling for navigation */
+nav div {
+  background-color: #b56700;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  padding: 1rem;
+  padding-left: 0;
+  margin: 0;
+}
+
+nav li {
+  padding: 0.5em;
+  font-size: 1.2rem;
+}
+
+nav li:first-child {
+  font-weight: bold;
+} 
+
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+nav a:hover, nav a:active {
+  color: #f1ddc2;
+}
+
+/* Styling for flash-messages */
+.flash {
+  font-size: 0.9rem;
+  padding: 1rem;
+  max-width: 100%;
+}
+
+.flash-success {
+  background-color: #b7e9bc;
+  color: #052f08;
+}
+
+.flash-error{
+  background-color: #da8c8c;
+  color: #5f0d0d;
+}
+
+/* Styling of filter links */
+.filter a {
+  text-decoration: none;
+  background-color: #f1ddc2;
+  color: #000000;
+  padding: 10px;
+  margin: 0;
+  border: 1px solid #b56700;
+}
+
+.filter a:link, .filter a:visited {
+  color: #000000;
+}
+
+.filter a:hover, .filter a:active, .filter a.current {
+  background-color: #b56700;
+  color: #ffffff;
+}
+
+/* Styling of issue table */
+caption {
+  caption-side: bottom;
+  text-align: left;
+  font-size: 0.9rem;
+  margin-top: 5px;
+}
+
+table {
+  border-collapse: collapse;
+  border-top: 2px solid #b56700;
+  border-bottom: 2px solid #b56700;
+  width: 100%;
+  margin-top: 1rem;
+  table-layout: fixed;
+}
+
+th {
+  background-color: #b56700;
+  color: #ffffff;
+  padding: 10px;
+}
+
+#author, #issue-id, #state, #edit {
+  width: 100px;
+}
+
+#title {
+  width: 40%;
+}
+
+#description {
+  width: 60%;
+}
+
+tr:nth-child(even) {
+  background-color: #f1ddc2;
+}
+
+td {
+  padding: 10px;
+  overflow: auto;
+}
+
+pre {
+  overflow: auto;
+}
+
+.author img {
+  height: 80px;
+  border-radius: 50%;
+}
+
+.edit img {
+  height: 20px;
+}
+
+.author, .issue-id, .state, .edit {
+  text-align: center;
+}
+
+/* Styling of form */
+form {
+  max-width: 500px;
+  background-color: #f1ddc2;
+  padding: 2rem;
+  margin: auto;
+  border-radius: 5px;
+}
+
+input[type="text"], textarea {
+  width: 100%;
+  margin-bottom: 10px;
+  display: block;
+  padding: 5px;
+  border: 2px solid #a5a5a5;
+  outline: none; 
+}
+
+input[type="text"]:focus, textarea:focus {
+  border: 2px solid #b56700;
+}
+
+input[type="checkbox"] {
+  cursor: pointer;
+}
+
+form div {
+  text-align: center;
+  margin-top: 10px;
+}
+
+form button, form a {
+  font-size: 1rem;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #b56700;
+  background-color: #ffffff;
+  border: 2px solid #b56700;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 5px;
+}
+
+form a:link, form a:visited {
+  color: #b56700;
+}
+
+form a:hover, form a:active, form button:hover, form button:active {
+  color: #ffffff;
+  background-color: #b56700;
+  border: 2px solid #b56700;
+}
+
+/* Styling of error page */
+#error h1, #error h2, #error pre {
+  color: #000000;
+}
+
+/* Styling of table for smaller screens */
+@media only screen and (max-width: 700px) {
+  table, caption, thead, tbody, th, td, tr { 
+		display: block; 
+	}
+
+  table {
+    position: relative;
+    margin-bottom: 50px;
+  }
+
+  caption {
+    position: absolute;
+    bottom: -25px;
+    left: 0;
+  }
+
+  thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+  td { 
+		position: relative;
+		padding-left: 50%;
+    text-align: center;
+    min-height: 40px;
+	}
+
+  tr:nth-child(even) td {
+    border-bottom: 1px solid #ffffff; 
+  }
+
+  tr:nth-child(odd) td {
+    border-bottom: 1px solid #f1ddc2; 
+  }
+
+  td:before { 
+		position: absolute;
+		top: 10px;
+		left: 0;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+	}
+	
+	td:nth-of-type(1):before {content: "Author"; }
+	td:nth-of-type(2):before { content: "Issue ID"; }
+	td:nth-of-type(3):before { content: "Title"; }
+	td:nth-of-type(4):before { content: "Description"; }
+	td:nth-of-type(5):before { content: "State"; }
+	td:nth-of-type(6):before { content: "Edit"; }
+}

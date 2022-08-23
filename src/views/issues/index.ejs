@@ -1,0 +1,90 @@
+<h2>Issues</h2>
+
+<div class="filter">
+  <a href="./issues"
+    <% if (!filter) { %>
+      class="current"
+    <% } %>
+  >All</a>
+  <a href="./issues?state=opened"
+    <% if (filter === 'opened') { %>
+      class="current"
+    <% } %>
+  >Open</a>
+  <a href="./issues?state=closed"
+    <% if (filter === 'closed') { %>
+      class="current"
+    <% } %>
+  >Closed</a>
+</div>
+
+<table>
+  <caption>
+    <% if (!filter) { %>
+      All GitLab issues
+    <% } else if (filter === 'opened') { %>
+      Open GitLab issues
+    <% } else if (filter === 'closed') { %>
+      Closed GitLab issues
+    <% } %>
+  </caption>
+  <thead>
+    <tr>
+      <th scope="col" id="author">Author</th>
+      <th scope="col" id="issue-id">Issue ID</th>
+      <th scope="col" id="title">Title</th>
+      <th scope="col" id="description">Description</th>
+      <th scope="col" id="state">State</th>
+      <th scope="col" id="edit">Edit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% for (const issue of issues) { %>
+      <tr id="<%= issue.id %>">
+        <td class="author">
+          <img 
+            alt="Profile"
+            title="<%= issue.author.name %>"
+            <% if (issue.author.avatar_url) { %> 
+              src="<%= issue.author.avatar_url %>"
+            <% } else { %>
+              src="./img/profile.png"
+            <% } %>>
+          </img>  
+        </td>
+        <td class="issue-id">#<%= issue.id %></td>
+        <td class="title"><%= issue.title %></td>
+        <td class="description"><pre><%= issue.description %></pre></td>
+        <td class="state">
+          <% if (issue.state === 'opened') { %>
+            Open
+          <% } else if (issue.state === 'closed') { %>
+            Closed
+          <% } %>
+        </td>
+        <td class="edit">
+          <a href="./issues/<%= issue.id %>/update">
+            <img src="./img/edit-orange.png" alt="Edit icon" title="Edit">
+          </a>  
+        </td>
+      </tr>
+    <% } %>
+  </tbody>
+</table>
+
+<template>
+  <tr>
+    <td class="author">
+      <img alt="Profile"></img>  
+    </td>
+    <td class="issue-id"></td>
+    <td class="title"></td>
+    <td class="description"><pre></pre></td>
+    <td class="state"></td>
+    <td class="edit">
+      <a>
+        <img src="./img/edit-orange.png" alt="Edit icon" title="Edit">
+      </a>  
+    </td>
+  </tr>
+</template>
